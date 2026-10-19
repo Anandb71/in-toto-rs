@@ -548,7 +548,7 @@ impl PrivateKey {
         keyid_hash_algorithms: Option<Vec<String>>,
     ) -> Result<Self> {
         let key = Ed25519KeyPair::from_pkcs8(der_key).map_err(|_| {
-            Error::Encoding("Could not parse key as PKCS#8v2".into())
+            Error::Encoding("Could not parse key as PKCS#8".into())
         })?;
 
         let public = PublicKey::new(
@@ -570,7 +570,7 @@ impl PrivateKey {
         }
 
         let key = RsaKeyPair::from_pkcs8(der_key).map_err(|_| {
-            Error::Encoding("Could not parse key as PKCS#8v2".into())
+            Error::Encoding("Could not parse key as PKCS#8".into())
         })?;
 
         if key.public().modulus_len() < 256 {
@@ -603,7 +603,7 @@ impl PrivateKey {
             &SystemRandom::new(),
         )
         .map_err(|_| {
-            Error::Encoding("Could not parse key as PKCS#8v2".into())
+            Error::Encoding("Could not parse key as PKCS#8".into())
         })?;
         let public = PublicKey::new(
             KeyType::Ecdsa,
