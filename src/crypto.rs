@@ -602,9 +602,7 @@ impl PrivateKey {
             der_key,
             &SystemRandom::new(),
         )
-        .map_err(|_| {
-            Error::Encoding("Could not parse key as PKCS#8".into())
-        })?;
+        .map_err(|_| Error::Encoding("Could not parse key as PKCS#8".into()))?;
         let public = PublicKey::new(
             KeyType::Ecdsa,
             scheme,
